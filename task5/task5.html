@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 5 – Registration Form Validation</title>
+</head>
+
+<body>
+
+    <h1>Registration Form</h1>
+    <p>Fill in all fields and click <strong>Submit</strong> to register.</p>
+
+    <form onsubmit="return handleSubmit(event)">
+
+        <label for="name">Full Name:</label><br />
+        <input type="text" id="name" placeholder="Enter your full name" />
+        <span id="error-name"></span>
+        <br /><br />
+
+        <label for="email">Email:</label><br />
+        <input type="text" id="email" placeholder="Enter your email" />
+        <span id="error-email"></span>
+        <br /><br />
+
+        <label for="age">Age:</label><br />
+        <input type="number" id="age" placeholder="Enter your age" />
+        <span id="error-age"></span>
+        <br /><br />
+
+        <label for="password">Password:</label><br />
+        <input type="password" id="password" placeholder="Minimum 6 characters" />
+        <span id="error-password"></span>
+        <br /><br />
+
+        <button type="submit">Submit</button>
+        <button type="button" onclick="resetForm()">Reset</button>
+
+    </form>
+
+    <div id="form-result"></div>
+
+    <script src="task5.js"></script>
+
+</body>
+
+</html>

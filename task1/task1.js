@@ -1,0 +1,91 @@
+// ─── Data ────────────────────────────────────────────────────────────────────
+const questions = [
+  { id: 1, text: "What is the capital of France?",            answer: "paris"      },
+  { id: 2, text: "What is 7 × 8?",                           answer: "56"         },
+  { id: 3, text: "Which planet is known as the Red Planet?",  answer: "mars"       },
+  { id: 4, text: "What language runs in a web browser?",      answer: "javascript" },
+  { id: 5, text: "What is the chemical symbol for water?",    answer: "h2o"        }
+];
+
+// ─── Build Quiz UI ────────────────────────────────────────────────────────────
+function buildQuiz() {
+  const container = document.getElementById("quiz-container");
+  container.innerHTML = "";
+
+  questions.forEach(function (q) {
+    const questionDiv = document.createElement("div");
+
+    const label = document.createElement("p");
+    label.textContent = "Q" + q.id + ": " + q.text;
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.id = "answer-" + q.id;
+    input.placeholder = "Your answer here";
+
+    const feedback = document.createElement("span");
+    feedback.id = "feedback-" + q.id;
+
+    questionDiv.appendChild(label);
+    questionDiv.appendChild(input);
+    questionDiv.appendChild(feedback);
+
+    container.appendChild(questionDiv);
+    container.appendChild(document.createElement("br"));
+  });
+}
+
+// ─── Check Individual Answer ──────────────────────────────────────────────────
+function checkAnswer(question) {
+  const inputEl   = document.getElementById("answer-" + question.id);
+  const userAnswer = inputEl.value.trim().toLowerCase();
+  const feedbackEl = document.getElementById("feedback-" + question.id);
+
+  if (userAnswer === question.answer) {
+    feedbackEl.textContent = " ✔ Correct!";
+    return 1;
+  } else {
+    feedbackEl.textContent = " ✘ Wrong (Answer: " + question.answer + ")";
+    return 0;
+  }
+}
+
+// ─── Calculate Total Score ────────────────────────────────────────────────────
+function calculateScore() {
+  let total = 0;
+  questions.forEach(function (q) {
+    total += checkAnswer(q);
+  });
+  return total;
+}
+
+// ─── Submit Quiz ──────────────────────────────────────────────────────────────
+function submitQuiz() {
+  const score      = calculateScore();
+  const total      = questions.length;
+  const percentage = (score / total) * 100;
+
+  let message = "";
+  if (percentage === 100) {
+    message = "🏆 Excellent! Perfect score!";
+  } else if (percentage >= 60) {
+    message = "👍 Good job! Keep it up!";
+  } else {
+    message = "😕 Try Again! Review the answers and give it another shot.";
+  }
+
+  const resultDiv = document.getElementById("result");
+  resultDiv.innerHTML =
+    "<hr />" +
+    "<h2>Your Score: " + score + " / " + total + "</h2>" +
+    "<h3>" + message + "</h3>";
+}
+
+// ─── Reset Quiz ───────────────────────────────────────────────────────────────
+function resetQuiz() {
+  buildQuiz();
+  document.getElementById("result").innerHTML = "";
+}
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+buildQuiz();

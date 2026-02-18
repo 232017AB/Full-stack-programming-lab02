@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 4 – Color Box Generator</title>
+</head>
+
+<body>
+
+    <h1>Color Box Generator</h1>
+
+    <p>Type a color name in each field and click <strong>Add Boxes</strong> to generate colored boxes.</p>
+
+    <label for="color1">Color 1:</label>
+    <input type="text" id="color1" placeholder="e.g. red" />
+    <br /><br />
+
+    <label for="color2">Color 2:</label>
+    <input type="text" id="color2" placeholder="e.g. blue" />
+    <br /><br />
+
+    <label for="color3">Color 3:</label>
+    <input type="text" id="color3" placeholder="e.g. green" />
+    <br /><br />
+
+    <button onclick="addBoxes()">Add Boxes</button>
+    <button onclick="clearBoxes()">Clear All</button>
+
+    <hr />
+
+    <div id="box-container"></div>
+
+    <hr />
+
+    <div id="bom-info"></div>
+
+    <script src="task4.js"></script>
+
+</body>
+
+</html>
